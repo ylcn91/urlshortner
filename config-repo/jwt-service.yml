@@ -1,0 +1,12 @@
+jwt:
+  secret: "YourSecretKey" # Strong secret key
+  expirationTime: 86400000 # 1 day in milliseconds
+  tokenPrefix: "Bearer "
+  headerString: "Authorization"
+
+kafka:
+  bootstrapServers: localhost:9092
+  consumerGroupId: jwt-service-group
+  topics:
+    - user_created
+    - validate_token

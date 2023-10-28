@@ -1,0 +1,17 @@
+# user-service.yml
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userservice
+    username: doksanbir
+    password:
+  topics:
+    user-created: user-created
+    user-deactivated: user-deactivated
+    user-deleted: user-deleted
+
+kafka:
+  bootstrap-servers: localhost:9092
+

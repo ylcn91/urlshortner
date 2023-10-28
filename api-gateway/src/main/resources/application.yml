@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: api-gateway
+  config:
+    import: configserver:http://localhost:8888/
+  cloud:
+    config:
+      uri: http://localhost:8888  # URI of your Config Server
+      fail-fast: true # Enables fail fast mode, the app will fail to start if it cannot connect to the config server
+  profiles:
+    active: default
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+
+logging:
+  level:
+    org.springframework.cloud: DEBUG

@@ -1,0 +1,29 @@
+server:
+  port: 8091
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - name: RateLimiterFilter
+        - name: CircuitBreakerFilter
+
+resilience4j.circuitbreaker:
+  instances:
+    default:
+      slidingWindowSize: 100
+
+rateLimiter:
+  capacity: 50  # Max number of concurrent calls
+  refillTokens: 10  # Number of tokens added in each refill
+  timeoutDuration: 500 # Timeout in milliseconds
+
+jwt:
+  secret: your-secret-key
+
+# Filter orders
+filters:
+  circuitBreaker:
+    order: -2
+  rateLimiter:
+    order: -1
