@@ -7,6 +7,7 @@ import com.doksanbir.urlshortner.urlshortenerservice.domain.ports.Outbound.UrlMa
 import com.doksanbir.urlshortner.urlshortenerservice.adapter.UrlMappingCacheAdapter;
 import com.doksanbir.urlshortner.urlshortenerservice.adapter.messaging.UrlShortenerKafkaAdapter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
@@ -16,9 +17,12 @@ import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class CreateShortUrlUseCase implements CreateShortUrlUseCasePort {
+
+    //TODO: instead of using UUID.randomUUID() we can use a custom id generator
 
     private final UrlMappingRepositoryPort urlMappingRepository;
     private final UrlShortenerKafkaAdapter kafkaAdapter;
@@ -46,6 +50,7 @@ public class CreateShortUrlUseCase implements CreateShortUrlUseCasePort {
     }
 
     private String generateShortUrl(String longUrl) throws NoSuchAlgorithmException {
+        log.info("Generating short URL for: {}", longUrl);
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] hash = md.digest(longUrl.getBytes());
 
@@ -55,6 +60,8 @@ public class CreateShortUrlUseCase implements CreateShortUrlUseCasePort {
         // Take the first 8 characters as the short URL
         return base64Hash.substring(0, 8);
     }
+
+
 
     private UrlMapping createUrlMapping(String longUrl, String userId, String customAlias,
                                         LocalDateTime expirationDate, List<String> tags, String shortUrl) {
@@ -76,6 +83,7 @@ public class CreateShortUrlUseCase implements CreateShortUrlUseCasePort {
     }
 
     private void cacheUrlMapping(String shortUrl, UrlMapping urlMapping) {
+        log.info("Caching URL mapping: {}", urlMapping);
         cacheAdapter.cacheUrlMapping(shortUrl, urlMapping);
     }
 

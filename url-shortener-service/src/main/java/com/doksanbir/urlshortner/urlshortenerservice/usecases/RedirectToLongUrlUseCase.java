@@ -24,6 +24,8 @@ public class RedirectToLongUrlUseCase implements RedirectToLongUrlUseCasePort {
     public UrlMapping redirectToLongUrl(String shortUrl) {
         UrlMapping urlMapping = cacheAdapter.getCachedUrlMapping(shortUrl);
 
+        log.info("Retrieved URL mapping from cache: {}", urlMapping);
+
         if (urlMapping == null) {
             urlMapping = urlMappingRepository.findByShortUrl(shortUrl);
             cacheAdapter.cacheUrlMapping(shortUrl, urlMapping);

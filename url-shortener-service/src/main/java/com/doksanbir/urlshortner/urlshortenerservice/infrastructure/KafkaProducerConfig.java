@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Configuration
 public class KafkaProducerConfig {
-
+    //TODO: add kafka producer config to url-shortener-service.yml
     @Bean
     public ProducerFactory<String, Object> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
