@@ -11,6 +11,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jwt-service" target="17" />
+      <module name="jwt-service.main" target="17" />
+      <module name="jwt-service.test" target="17" />
       <module name="rate-limiter-service" target="17" />
       <module name="rate-limiter-service.main" target="17" />
       <module name="rate-limiter-service.test" target="17" />

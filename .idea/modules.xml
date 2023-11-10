@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/url-shortener-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/url-shortener-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/urlshortner.iml" filepath="$PROJECT_DIR$/.idea/urlshortner.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-service.main.iml" />
     </modules>
